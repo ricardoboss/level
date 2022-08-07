@@ -4,34 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b76c8f04a3e5c3c9bb3de3dfecbc9c4b",
+    "content-hash": "6e376d17b3f5ac52cf04244744859974",
     "packages": [
         {
             "name": "bloatless/php-websocket",
-            "version": "v3.0.0",
+            "version": "dev-feature/fibers",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bloatless/php-websocket.git",
-                "reference": "3b2649e26fece03057bcfc7a0c3dbdf1af116995"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bloatless/php-websocket/zipball/3b2649e26fece03057bcfc7a0c3dbdf1af116995",
-                "reference": "3b2649e26fece03057bcfc7a0c3dbdf1af116995",
-                "shasum": ""
+                "url": "https://github.com/ricardoboss/php-websocket.git",
+                "reference": "b865aa8f2c407d53e1a437e4e6e3cf5aceea6baa"
             },
             "require": {
                 "ext-json": "*",
                 "ext-sockets": "*",
-                "php": "^7.4|^8.0"
+                "php": "^8.1",
+                "psr/log": "^3.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Bloatless\\WebSocket\\": "src/"
+                    "Bloatless\\WebSocket\\": "src/",
+                    "Bloatless\\WebSocketExamples\\": "examples/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -44,16 +39,12 @@
             "description": "A simple WebSocket Server and Client implementation in PHP.",
             "homepage": "https://bloatless.org",
             "keywords": [
-                "WebSockets",
                 "bloatless",
                 "php",
-                "websocket-server"
+                "websocket-server",
+                "websockets"
             ],
-            "support": {
-                "issues": "https://github.com/bloatless/php-websocket/issues",
-                "source": "https://github.com/bloatless/php-websocket/tree/v3.0.0"
-            },
-            "time": "2021-01-12T18:25:32+00:00"
+            "time": "2022-08-07T10:22:31+00:00"
         },
         {
             "name": "elephox/autoloading",
@@ -100,6 +91,102 @@
                 "source": "https://github.com/elephox-dev/framework"
             },
             "time": "2022-04-29T08:00:12+00:00"
+        },
+        {
+            "name": "elephox/builder-whoops-handler",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elephox-dev/builder-whoops-handler.git",
+                "reference": "8df949e0e6e1b6dd7e83bb83850610c0630e1a21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elephox-dev/builder-whoops-handler/zipball/8df949e0e6e1b6dd7e83bb83850610c0630e1a21",
+                "reference": "8df949e0e6e1b6dd7e83bb83850610c0630e1a21",
+                "shasum": ""
+            },
+            "require": {
+                "elephox/console": "*",
+                "filp/whoops": "^2.14",
+                "php": "^8.1 <8.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "nunomaduro/collision": "^6.2"
+            },
+            "suggest": {
+                "nunomaduro/collision": "For pretty formatting of exceptions in the console"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Elephox\\Builder\\Whoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ricardo Boss",
+                    "email": "contact@ricardoboss.de"
+                }
+            ],
+            "description": "Elephox Application Builder extension for Whoops as exception handler",
+            "support": {
+                "issues": "https://github.com/elephox-dev/builder-whoops-handler/issues",
+                "source": "https://github.com/elephox-dev/builder-whoops-handler/tree/develop"
+            },
+            "time": "2022-05-23T21:10:07+00:00"
+        },
+        {
+            "name": "elephox/builder-whoops-middleware",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elephox-dev/builder-whoops-middleware.git",
+                "reference": "c0f25eb291a2d97d63d1f1ede5da8a99f03178a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elephox-dev/builder-whoops-middleware/zipball/c0f25eb291a2d97d63d1f1ede5da8a99f03178a0",
+                "reference": "c0f25eb291a2d97d63d1f1ede5da8a99f03178a0",
+                "shasum": ""
+            },
+            "require": {
+                "elephox/web": "*",
+                "filp/whoops": "^2.14",
+                "php": "^8.1 <8.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "dev-master"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Elephox\\Builder\\Whoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ricardo Boss",
+                    "email": "contact@ricardoboss.de"
+                }
+            ],
+            "description": "Elephox Web Application Builder extension for Whoops Middleware",
+            "support": {
+                "issues": "https://github.com/elephox-dev/builder-whoops-middleware/issues",
+                "source": "https://github.com/elephox-dev/builder-whoops-middleware/tree/develop"
+            },
+            "time": "2022-05-23T21:11:42+00:00"
         },
         {
             "name": "elephox/collection",
@@ -713,6 +800,77 @@
                 "source": "https://github.com/elephox-dev/framework"
             },
             "time": "2022-07-19T22:34:45+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.14.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "a63e5e8f26ebbebf8ed3c5c691637325512eb0dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a63e5e8f26ebbebf8ed3c5c691637325512eb0dc",
+                "reference": "a63e5e8f26ebbebf8ed3c5c691637325512eb0dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0 || ^8.0",
+                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.3",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "support": {
+                "issues": "https://github.com/filp/whoops/issues",
+                "source": "https://github.com/filp/whoops/tree/2.14.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/denis-sokolov",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-07T12:00:00+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1434,12 +1592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "83594c26a26f66af6e5322b9011b2e243a5509e8"
+                "reference": "8b99cfd0a6224d0fc7b223603210d48e36a79966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/83594c26a26f66af6e5322b9011b2e243a5509e8",
-                "reference": "83594c26a26f66af6e5322b9011b2e243a5509e8",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/8b99cfd0a6224d0fc7b223603210d48e36a79966",
+                "reference": "8b99cfd0a6224d0fc7b223603210d48e36a79966",
                 "shasum": ""
             },
             "conflict": {
@@ -1557,6 +1715,7 @@
                 "flarum/sticky": ">=0.1-beta.14,<=0.1-beta.15",
                 "flarum/tags": "<=0.1-beta.13",
                 "fluidtypo3/vhs": "<5.1.1",
+                "fof/byobu": ">=0.3-beta.2,<1.1.7",
                 "fof/upload": "<1.2.3",
                 "fooman/tcpdf": "<6.2.22",
                 "forkcms/forkcms": "<5.11.1",
@@ -1941,7 +2100,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-29T23:04:14+00:00"
+            "time": "2022-08-06T06:06:57+00:00"
         }
     ],
     "aliases": [],
@@ -1949,7 +2108,10 @@
     "stability-flags": {
         "elephox/di": 20,
         "elephox/web": 20,
+        "bloatless/php-websocket": 20,
         "elephox/templar": 20,
+        "elephox/builder-whoops-middleware": 20,
+        "elephox/builder-whoops-handler": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

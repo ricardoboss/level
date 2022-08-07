@@ -1,7 +1,56 @@
 <?php
 declare(strict_types=1);
 
-/** @var \Elephox\Web\WebApplication $app */
-$app = require __DIR__ . '/../bootstrap.php';
+use Elephox\Builder\Whoops\AddsWhoopsMiddleware;
+use Elephox\Support\Contract\ExceptionHandler;
+use Elephox\Templar\DocumentMeta;
+use Elephox\Templar\Templar;
+use Elephox\Web\Routing\RequestRouter;
+use Elephox\Web\WebApplicationBuilder;
+use RicardoBoss\Level\Middleware\ProductionExceptionHandler;
+use RicardoBoss\Level\Routes\WebRoutes;
+use RicardoBoss\Level\WebSocket\UIApp;
 
+require __DIR__ . '/../vendor/autoload.php';
+const APP_ROOT = __DIR__;
+
+class WebBuilder extends WebApplicationBuilder {
+	use AddsWhoopsMiddleware;
+}
+
+$builder = WebBuilder::create();
+
+if ($builder->environment->isDevelopment()) {
+	$builder->addWhoops();
+} else {
+	$builder->services->addSingleton(
+		ExceptionHandler::class,
+		ProductionExceptionHandler::class,
+		fn (Templar $templar) => new ProductionExceptionHandler($templar)
+	);
+
+	$builder->pipeline->exceptionHandler($builder->service(ExceptionHandler::class));
+}
+
+$builder->services->addTransient(
+	UIApp::class,
+	UIApp::class,
+	fn () => UIApp::getInstance()
+);
+
+$builder->services->addSingleton(
+	Templar::class,
+	implementationFactory: function () {
+		return new Templar(
+			new DocumentMeta(
+				"level"
+			),
+		);
+	}
+);
+
+$builder->setRequestRouterEndpoint();
+$builder->service(RequestRouter::class)->loadFromClass(WebRoutes::class);
+
+$app = $builder->build();
 $app->run();

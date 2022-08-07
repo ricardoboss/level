@@ -1,18 +1,26 @@
 {
     "name": "ricardoboss/level",
-    "description": "A web framework for building server side rendered apps",
+    "description": "A web framework for building  side rendered apps",
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
         "php": "^8.1",
-        "elephox/di": "dev-develop",
-        "elephox/web": "dev-develop",
-        "bloatless/php-websocket": "^3.0",
-        "elephox/templar": "dev-main"
+        "vendor/elephox/di": "dev-develop",
+        "vendor/elephox/web": "dev-develop",
+        "vendor/bloatless/php-websocket": "dev-feature/fibers",
+        "vendor/elephox/templar": "dev-main",
+        "vendor/elephox/builder-whoops-middleware": "dev-develop",
+        "vendor/elephox/builder-whoops-handler": "dev-develop"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/ricardoboss/php-websocket.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "RicardoBoss\\Level\\": "src/"

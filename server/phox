@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use Elephox\Builder\Whoops\AddsWhoopsHandler;
+use Elephox\Console\ConsoleApplicationBuilder;
+use Elephox\DI\Contract\ServiceCollection;
+use Elephox\Support\Contract\ExceptionHandler;
+use Elephox\Web\Routing\Contract\Router;
+use Elephox\Web\Routing\RequestRouter;
+
+require_once 'vendor/autoload.php';
+const APP_ROOT = __DIR__;
+
+class ConsoleBuilder extends ConsoleApplicationBuilder {
+	use AddsWhoopsHandler;
+}
+
+// Build console application
+$builder = ConsoleBuilder::create();
+$builder->addLogging();
+$builder->addWhoops();
+
+$builder->services->addSingleton(
+	Router::class,
+	RequestRouter::class,
+	function (ServiceCollection $services): RequestRouter {
+		return (new RequestRouter($services))->loadFromNamespace('RicardoBoss\\Level\\Routes');
+	}
+);
+
+$builder->commands->loadFromNamespace("Elephox\\Web\\Commands");
+$builder->commands->loadFromNamespace("RicardoBoss\\Level\\Commands");
+
+$app = $builder->build();
+try {
+	$app->run();
+} catch (Throwable $e) {
+	$app->services->get(ExceptionHandler::class)->handleException($e);
+}
