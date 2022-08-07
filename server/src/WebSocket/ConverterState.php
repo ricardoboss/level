@@ -8,4 +8,11 @@ class ConverterState implements StateInterface {
 		public float $celsius = 0.0,
 		public float $fahrenheit = 0.0
 	) {}
+
+	public function jsonSerialize(): array {
+		return [
+			'celsius' => $this->celsius,
+			'fahrenheit' => $this->fahrenheit,
+		];
+	}
 }

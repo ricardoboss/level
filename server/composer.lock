@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e376d17b3f5ac52cf04244744859974",
+    "content-hash": "e779a1f9cead4f95da519ee668556827",
     "packages": [
         {
             "name": "bloatless/php-websocket",
-            "version": "dev-feature/fibers",
+            "version": "dev-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ricardoboss/php-websocket.git",
-                "reference": "b865aa8f2c407d53e1a437e4e6e3cf5aceea6baa"
+                "reference": "f5a690ce1d8a60cae3e9b83fe3328bcc401957e6"
             },
             "require": {
                 "ext-json": "*",
                 "ext-sockets": "*",
-                "php": "^8.1",
+                "php": "^8.0",
                 "psr/log": "^3.0"
             },
             "type": "library",
@@ -44,7 +44,7 @@
                 "websocket-server",
                 "websockets"
             ],
-            "time": "2022-08-07T10:22:31+00:00"
+            "time": "2022-08-07T18:23:08+00:00"
         },
         {
             "name": "elephox/autoloading",
@@ -712,12 +712,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elephox-dev/templar.git",
-                "reference": "b215e022f581e0b86830fd5493e991cad943b214"
+                "reference": "d5b274b515fb003472443e0e20519a74e44d7048"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/b215e022f581e0b86830fd5493e991cad943b214",
-                "reference": "b215e022f581e0b86830fd5493e991cad943b214",
+                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/d5b274b515fb003472443e0e20519a74e44d7048",
+                "reference": "d5b274b515fb003472443e0e20519a74e44d7048",
                 "shasum": ""
             },
             "require-dev": {
@@ -746,7 +746,7 @@
                 "issues": "https://github.com/elephox-dev/templar/issues",
                 "source": "https://github.com/elephox-dev/templar/tree/main"
             },
-            "time": "2022-08-04T19:19:55+00:00"
+            "time": "2022-08-07T20:03:20+00:00"
         },
         {
             "name": "elephox/web",
@@ -754,12 +754,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elephox-dev/web.git",
-                "reference": "280a339540ecaebd3995944fe22afa923f6717a9"
+                "reference": "36039a78a2309431204be66123e3978aba4f7b5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elephox-dev/web/zipball/280a339540ecaebd3995944fe22afa923f6717a9",
-                "reference": "280a339540ecaebd3995944fe22afa923f6717a9",
+                "url": "https://api.github.com/repos/elephox-dev/web/zipball/36039a78a2309431204be66123e3978aba4f7b5a",
+                "reference": "36039a78a2309431204be66123e3978aba4f7b5a",
                 "shasum": ""
             },
             "require": {
@@ -770,6 +770,7 @@
                 "elephox/di": "dev-develop",
                 "elephox/files": "dev-develop",
                 "elephox/http": "dev-develop",
+                "elephox/mimey": "^4.0",
                 "elephox/oor": "dev-develop",
                 "elephox/support": "dev-develop",
                 "ext-mbstring": "*",
@@ -799,7 +800,7 @@
                 "issues": "https://github.com/elephox-dev/framework/issues",
                 "source": "https://github.com/elephox-dev/framework"
             },
-            "time": "2022-07-19T22:34:45+00:00"
+            "time": "2022-08-07T20:47:25+00:00"
         },
         {
             "name": "filp/whoops",

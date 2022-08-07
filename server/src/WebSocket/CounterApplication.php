@@ -11,13 +11,7 @@ class CounterApplication extends StateApplication {
 		return new CounterState();
 	}
 
-	protected function modifyState(StateInterface $state, string $action, mixed $params): void {
-		assert($state instanceof CounterState);
-
-		switch ($action) {
-			case 'click':
-				$state->counter++;
-				break;
-		}
+	public function onIncrementClicked(CounterState $state) {
+		$state->counter++;
 	}
 }

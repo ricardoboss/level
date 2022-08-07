@@ -9,10 +9,9 @@ use Elephox\Web\Routing\RequestRouter;
 use Elephox\Web\WebApplicationBuilder;
 use RicardoBoss\Level\Middleware\ProductionExceptionHandler;
 use RicardoBoss\Level\Routes\WebRoutes;
-use RicardoBoss\Level\WebSocket\UIApp;
 
-require __DIR__ . '/../vendor/autoload.php';
-const APP_ROOT = __DIR__;
+const APP_ROOT = __DIR__ . '/..';
+require APP_ROOT . '/vendor/autoload.php';
 
 class WebBuilder extends WebApplicationBuilder {
 	use AddsWhoopsMiddleware;
@@ -22,7 +21,8 @@ $builder = WebBuilder::create();
 
 if ($builder->environment->isDevelopment()) {
 	$builder->addWhoops();
-} else {
+}
+else {
 	$builder->services->addSingleton(
 		ExceptionHandler::class,
 		ProductionExceptionHandler::class,
@@ -31,12 +31,6 @@ if ($builder->environment->isDevelopment()) {
 
 	$builder->pipeline->exceptionHandler($builder->service(ExceptionHandler::class));
 }
-
-$builder->services->addTransient(
-	UIApp::class,
-	UIApp::class,
-	fn () => UIApp::getInstance()
-);
 
 $builder->services->addSingleton(
 	Templar::class,

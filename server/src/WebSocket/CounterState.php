@@ -7,4 +7,10 @@ class CounterState implements StateInterface {
 	public function __construct(
 		public int $counter = 0
 	) {}
+
+	public function jsonSerialize(): array {
+		return [
+			'counter' => $this->counter,
+		];
+	}
 }

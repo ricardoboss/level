@@ -8,22 +8,13 @@ class ConverterApplication extends StateApplication {
 		return new ConverterState();
 	}
 
-	protected function modifyState(StateInterface $state, string $action, array $params): void {
-		assert($state instanceof ConverterState);
+	public function onCelsiusChanged(ConverterState $state, array $payload) {
+		$state->celsius = (float) $payload['value'];
+		$state->fahrenheit = $state->celsius * (9.0 / 5.0) + 32.0;
+	}
 
-		switch ($action) {
-			case 'change':
-				switch ($params['field']) {
-					case 'celsius':
-						$state->celsius = (float)$params['value'];
-						$state->fahrenheit = $state->celsius * (9 / 5) + 32;
-						break;
-					case 'fahrenheit':
-						$state->fahrenheit = (float)$params['value'];
-						$state->celsius = ($state->fahrenheit - 32) * (5 / 9);
-						break;
-				}
-				break;
-		}
+	public function onFahrenheitChanged(ConverterState $state, array $payload) {
+		$state->fahrenheit = (float) $payload['value'];
+		$state->celsius = ($state->fahrenheit - 32.0) * (5.0 / 9.0);
 	}
 }

@@ -34,9 +34,17 @@ class WebsocketServeCommand implements CommandHandler {
 		$server = new WebSocketServer($host, $port, Path::join(sys_get_temp_dir(), 'phpwss.sock'));
 		$server->setLogger($this->logger);
 		$server->setCheckOrigin(false);
+
 		$server->registerApplication('status', StatusApplication::getInstance());
 		$server->registerApplication('counter', CounterApplication::getInstance());
 		$server->registerApplication('converter', ConverterApplication::getInstance());
+
+		$this->logger->info("Starting websocket server on ws://$host:$port", [
+			'scheme' => 'ws',
+			'host' => $host,
+			'port' => $port,
+		]);
+
 		$server->run();
 
 		return 0;
