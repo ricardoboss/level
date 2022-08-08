@@ -10,7 +10,7 @@ class InlineTemplarRenderer {
 	/**
 	 * @throws \ErrorException
 	 */
-	public static function render(Templar $templar, Widget $content, string $scriptName): string {
+	public static function render(Templar $templar, Widget $content, ?string $scriptName): string {
 		$app = new App($content, $scriptName);
 		$style = $templar->renderStyle($app);
 		$templar->context->meta->styles[] = $style;

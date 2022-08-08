@@ -14,15 +14,21 @@ use Elephox\Templar\Widget;
 class App extends BuildWidget {
 	public function __construct(
 		protected readonly Widget $child,
-		protected readonly string $scriptName,
+		protected readonly ?string $scriptName,
 	) {}
 
 	protected function build(RenderContext $context): Widget {
+		$headChildren = [];
+
+		if ($this->scriptName !== null) {
+			$headChildren[] = new ExternalScript(
+				"js/$this->scriptName.js",
+			);
+		}
+
 		return new FullscreenDocument(
 			new Head(
-				children: [
-					new ExternalScript("js/$this->scriptName.js"),
-				],
+				children: $headChildren,
 			),
 			new FullscreenBody(
 				$this->child,

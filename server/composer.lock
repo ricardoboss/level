@@ -290,12 +290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elephox-dev/console.git",
-                "reference": "c7f3711d6d396a935fb0808a240284f63a9cb219"
+                "reference": "c64ca8371b39dfbed9b9959a41e4d0a08445c4c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elephox-dev/console/zipball/c7f3711d6d396a935fb0808a240284f63a9cb219",
-                "reference": "c7f3711d6d396a935fb0808a240284f63a9cb219",
+                "url": "https://api.github.com/repos/elephox-dev/console/zipball/c64ca8371b39dfbed9b9959a41e4d0a08445c4c5",
+                "reference": "c64ca8371b39dfbed9b9959a41e4d0a08445c4c5",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
                 "issues": "https://github.com/elephox-dev/framework/issues",
                 "source": "https://github.com/elephox-dev/framework"
             },
-            "time": "2022-07-19T21:46:51+00:00"
+            "time": "2022-08-07T20:37:17+00:00"
         },
         {
             "name": "elephox/di",
@@ -712,12 +712,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elephox-dev/templar.git",
-                "reference": "d5b274b515fb003472443e0e20519a74e44d7048"
+                "reference": "f715c899c1b9e0de0d1610415ea491a9085d0326"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/d5b274b515fb003472443e0e20519a74e44d7048",
-                "reference": "d5b274b515fb003472443e0e20519a74e44d7048",
+                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/f715c899c1b9e0de0d1610415ea491a9085d0326",
+                "reference": "f715c899c1b9e0de0d1610415ea491a9085d0326",
                 "shasum": ""
             },
             "require-dev": {
@@ -746,7 +746,7 @@
                 "issues": "https://github.com/elephox-dev/templar/issues",
                 "source": "https://github.com/elephox-dev/templar/tree/main"
             },
-            "time": "2022-08-07T20:03:20+00:00"
+            "time": "2022-08-08T22:36:14+00:00"
         },
         {
             "name": "elephox/web",
