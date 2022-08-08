@@ -84,11 +84,16 @@ function attachClickListeners(): void {
 }
 
 function onClickHandler(event: Event): void {
-    const element = event.target as Element
-    const clickId = element.getAttribute('php-click')
+  for (const el of event.composedPath()) {
+    try {
+      const clickId = (el as EventTarget & { getAttribute(name: string): string }).getAttribute('php-click')
+      if (!clickId)
+        continue;
 
-    onAction(ActionType.Click, {clickId})
+      onAction(ActionType.Click, {clickId})
+    } catch (ignored) {}
   }
+}
 
 function attachChangeListeners(): void {
   document.querySelectorAll('[php-change]').forEach((el: Element) => {
