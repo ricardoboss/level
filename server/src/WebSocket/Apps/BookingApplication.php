@@ -12,4 +12,8 @@ class BookingApplication extends StateApplication {
 	protected function initializeState(): StateInterface {
 		return new BookingState(FlightType::OneWay, date("c"), date("c"));
 	}
+
+	public function onTypeChanged(BookingState $state, string $value) {
+		$state->type = FlightType::from($value);
+	}
 }

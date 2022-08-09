@@ -14,6 +14,7 @@ use Elephox\Templar\Foundation\LinkButton;
 use Elephox\Templar\Foundation\Separator;
 use Elephox\Templar\Foundation\Text;
 use Elephox\Templar\Foundation\Verbatim;
+use Elephox\Templar\InputType;
 use Elephox\Templar\Length;
 use Elephox\Templar\MainAxisAlignment;
 use Elephox\Templar\Templar;
@@ -21,6 +22,8 @@ use Elephox\Web\Routing\Attribute\Controller;
 use Elephox\Web\Routing\Attribute\Http\Get;
 use ErrorException;
 use RicardoBoss\Level\Widgets\InlineTemplarRenderer;
+use RicardoBoss\Level\Widgets\LevelButton;
+use RicardoBoss\Level\Widgets\LevelInput;
 
 #[Controller]
 class BookingController {
@@ -45,6 +48,9 @@ class BookingController {
 </select>
 HTML
 							),
+							new LevelInput(InputType::Text, "departure", true),
+							new LevelInput(InputType::Text, "arrival", true),
+							new LevelButton("book", new Text("Book")),
 							new Separator(),
 							new LinkButton(new Text("Home"), "/", rank: ColorRank::Secondary,),
 						],

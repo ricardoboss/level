@@ -15,6 +15,7 @@ interface MessageInterface<T = any> {
 
 enum MessageType {
   State = 'state',
+  Error = 'error',
 }
 
 enum ActionType {
@@ -53,6 +54,9 @@ function onMessageDecoded(message: MessageInterface): void {
     case MessageType.State:
       onStateMessage(message)
       break
+    case MessageType.Error:
+      onErrorMessage(message)
+      break
     default:
       console.error("Unknown message type", message.type)
   }
@@ -60,6 +64,12 @@ function onMessageDecoded(message: MessageInterface): void {
 
 function onStateMessage(message: MessageInterface): void {
   updateValues(message.payload)
+}
+
+function onErrorMessage(message: MessageInterface): void {
+  console.error("Error message received:", message.payload)
+
+  alert("An error has occurred: " + message.payload.message)
 }
 
 function onAction(action: ActionType, payload: any): void {

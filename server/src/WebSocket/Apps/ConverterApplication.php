@@ -12,13 +12,13 @@ class ConverterApplication extends StateApplication {
 		return new ConverterState();
 	}
 
-	public function onCelsiusChanged(ConverterState $state, array $payload) {
-		$state->celsius = (float) $payload['value'];
+	public function onCelsiusChanged(ConverterState $state, string $value) {
+		$state->celsius = (float) $value;
 		$state->fahrenheit = $state->celsius * (9.0 / 5.0) + 32.0;
 	}
 
-	public function onFahrenheitChanged(ConverterState $state, array $payload) {
-		$state->fahrenheit = (float) $payload['value'];
+	public function onFahrenheitChanged(ConverterState $state, string $value) {
+		$state->fahrenheit = (float) $value;
 		$state->celsius = ($state->fahrenheit - 32.0) * (5.0 / 9.0);
 	}
 }

@@ -8,6 +8,7 @@ use Bloatless\WebSocket\Connection;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Throwable;
 
 /**
  * @template TState of StateInterface
@@ -56,37 +57,60 @@ abstract class StateApplication implements ApplicationInterface, LoggerAwareInte
 	 * @throws \JsonException
 	 */
 	public function onData(string $data, Connection $client): void {
-		$decoded =
-			json_decode(
-				$data,
-				true,
-				512,
-				JSON_THROW_ON_ERROR
-			);
-		if (!isset($decoded['action'], $decoded['payload']) ||
-			!is_string($decoded['action']) ||
-			!is_array($decoded['payload'])) {
+		try {
+			$decoded =
+				json_decode(
+					$data,
+					true,
+					512,
+					JSON_THROW_ON_ERROR
+				);
+			if (!isset($decoded['action'], $decoded['payload']) ||
+				!is_string($decoded['action']) ||
+				!is_array($decoded['payload'])) {
+				return;
+			}
+		} catch (Throwable $e) {
+			$this->logger->error("An error occurred while decoding a clients message");
+			$this->logger->error($e->getMessage());
+			$this->sendError($client, $e);
 			return;
 		}
 
-		switch ($decoded['action']) {
-			case ActionType::Click->value:
-				$this->onClick(
-					$client,
-					$decoded['payload']
-				);
-				break;
-			case ActionType::Change->value:
-				$this->onChange(
-					$client,
-					$decoded['payload']
-				);
-				break;
-			default:
-				return;
+		try {
+			switch ($decoded['action']) {
+				case ActionType::Click->value:
+					$this->onClick(
+						$client,
+						$decoded['payload']
+					);
+					break;
+				case ActionType::Change->value:
+					$this->onChange(
+						$client,
+						$decoded['payload']
+					);
+					break;
+				default:
+					return;
+			}
+		} catch (Throwable $e) {
+			$this->logger->error(
+				"An error occurred while processing a '" . $decoded['action'] . "' action."
+			);
+			$this->logger->error($e->getMessage());
+			$this->sendError($client, $e);
+			return;
 		}
 
-		$this->sendState($client);
+		try {
+			$this->sendState($client);
+		} catch (Throwable $e) {
+			$this->logger->error("An error occurred while sending the state to the client.");
+			$this->logger->error($e->getMessage());
+
+			$this->sendError($client, $e);
+		}
 	}
 
 	/**
@@ -118,10 +142,14 @@ abstract class StateApplication implements ApplicationInterface, LoggerAwareInte
 		$method = 'on' . ucfirst($clickId) . 'Clicked';
 
 		if (!method_exists($this, $method)) {
-			$this->logger->warning('Received onClick event for click id {clickId} but no method {method} exists.', [
-				'clickId' => $clickId,
-				'method' => $method,
-			]);
+			$this->logger->warning(
+				"Received click id '$clickId' but method '$method' doesn't exist in " .
+				static::class,
+				[
+					'clickId' => $clickId,
+					'method' => $method,
+				]
+			);
 
 			return;
 		}
@@ -135,16 +163,20 @@ abstract class StateApplication implements ApplicationInterface, LoggerAwareInte
 		$method = 'on' . ucfirst($changeId) . 'Changed';
 
 		if (!method_exists($this, $method)) {
-			$this->logger->warning('Received onChange event for change id {changeId} but no method {method} exists.', [
-				'changeId' => $changeId,
-				'method' => $method,
-			]);
+			$this->logger->warning(
+				"Received change id '$changeId' but method '$method' doesn't exist in " .
+				static::class,
+				[
+					'changeId' => $changeId,
+					'method' => $method,
+				]
+			);
 
 			return;
 		}
 
 		$state = $this->getState($client);
-		$this->$method($state, $payload);
+		$this->$method($state, $payload['value']);
 	}
 
 	/**
@@ -154,6 +186,18 @@ abstract class StateApplication implements ApplicationInterface, LoggerAwareInte
 		$client->send(
 			json_encode(
 				new StateMessage($this->getState($client)),
+				JSON_THROW_ON_ERROR
+			)
+		);
+	}
+
+	/**
+	 * @throws \JsonException
+	 */
+	protected function sendError(Connection $client, ?Throwable $error): void {
+		$client->send(
+			json_encode(
+				new ErrorMessage($error),
 				JSON_THROW_ON_ERROR
 			)
 		);

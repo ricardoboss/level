@@ -23,6 +23,7 @@ class WebsocketAppProvider {
 
 			$key = substr($className, strrpos($className, "\\") + 1);
 			$key = str_replace("Application", "", $key);
+			$key = strtolower($key);
 
 			$apps[$key] = $instance;
 		});
