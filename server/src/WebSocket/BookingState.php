@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace RicardoBoss\Level\WebSocket;
 
-class FlightState implements StateInterface {
+class BookingState implements StateInterface {
 	public function __construct(
 		public FlightType $type,
 		public string $departure,

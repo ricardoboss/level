@@ -13,7 +13,7 @@ use Elephox\Templar\Foundation\Column;
 use Elephox\Templar\Foundation\LinkButton;
 use Elephox\Templar\Foundation\Separator;
 use Elephox\Templar\Foundation\Text;
-use Elephox\Templar\InputType;
+use Elephox\Templar\Foundation\Verbatim;
 use Elephox\Templar\Length;
 use Elephox\Templar\MainAxisAlignment;
 use Elephox\Templar\Templar;
@@ -21,11 +21,9 @@ use Elephox\Web\Routing\Attribute\Controller;
 use Elephox\Web\Routing\Attribute\Http\Get;
 use ErrorException;
 use RicardoBoss\Level\Widgets\InlineTemplarRenderer;
-use RicardoBoss\Level\Widgets\LevelButton;
-use RicardoBoss\Level\Widgets\LevelInput;
 
 #[Controller]
-class CounterController {
+class BookingController {
 	/**
 	 * @throws ErrorException
 	 */
@@ -39,19 +37,25 @@ class CounterController {
 					new Center(
 						new Column(
 							children: [
-								new LevelInput(InputType::Number, "counter"),
-								new LevelButton("increment", new Text("Increment")),
-								new Separator(),
-								new LinkButton(new Text("Home"), "/", rank: ColorRank::Secondary,),
-							],
+							new Verbatim(
+								<<<HTML
+<select php-value="type" php-watch>
+	<option value="one-way">One-Way</option>
+	<option value="return">Return</option>
+</select>
+HTML
+							),
+							new Separator(),
+							new LinkButton(new Text("Home"), "/", rank: ColorRank::Secondary,),
+						],
 							mainAxisAlignment: MainAxisAlignment::Center,
 							crossAxisAlignment: CrossAxisAlignment::Center,
 							shrinkWrap: true,
 							gap: Length::inPx(20),
 						),
 					),
-					"counter"
-				),
+					"booking"
+				)
 			);
 	}
 }

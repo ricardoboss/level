@@ -16,8 +16,7 @@ module.exports = {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
 	entry: {
-		counter: './src/counter.ts',
-		converter: './src/converter.ts',
+		framework: './src/framework.ts',
 	},
 	output: {
 		filename: '[name].js',

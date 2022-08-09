@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace RicardoBoss\Level\Views;
+namespace RicardoBoss\Level\Widgets;
 
 use Elephox\Templar\BuildWidget;
 use Elephox\Templar\Foundation\ExternalScript;
 use Elephox\Templar\Foundation\FullscreenBody;
 use Elephox\Templar\Foundation\FullscreenDocument;
 use Elephox\Templar\Foundation\Head;
+use Elephox\Templar\Foundation\InlineScript;
 use Elephox\Templar\RenderContext;
 use Elephox\Templar\Widget;
 
@@ -21,9 +22,8 @@ class App extends BuildWidget {
 		$headChildren = [];
 
 		if ($this->scriptName !== null) {
-			$headChildren[] = new ExternalScript(
-				"js/$this->scriptName.js",
-			);
+			$headChildren[] = new ExternalScript("js/framework.js", defer: true);
+			$headChildren[] = new InlineScript("document.querySelector('script').addEventListener('load', () => createApp('ws://localhost:8080/$this->scriptName'));");
 		}
 
 		return new FullscreenDocument(

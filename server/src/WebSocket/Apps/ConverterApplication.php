@@ -1,7 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace RicardoBoss\Level\WebSocket;
+namespace RicardoBoss\Level\WebSocket\Apps;
+
+use RicardoBoss\Level\WebSocket\ConverterState;
+use RicardoBoss\Level\WebSocket\StateApplication;
+use RicardoBoss\Level\WebSocket\StateInterface;
 
 class ConverterApplication extends StateApplication {
 	protected function initializeState(): StateInterface {

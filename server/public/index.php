@@ -10,6 +10,7 @@ use Elephox\Templar\Templar;
 use Elephox\Web\Routing\RequestRouter;
 use Elephox\Web\WebApplicationBuilder;
 use RicardoBoss\Level\Middleware\ProductionExceptionHandler;
+use RicardoBoss\Level\WebSocket\WebsocketAppProvider;
 
 const APP_ROOT = __DIR__ . '/..';
 require APP_ROOT . '/vendor/autoload.php';
@@ -47,6 +48,8 @@ $builder->services->addSingleton(
 		);
 	}
 );
+
+$builder->services->addSingleton(WebsocketAppProvider::class);
 
 $builder->setRequestRouterEndpoint();
 $builder->service(RequestRouter::class)->loadFromNamespace("RicardoBoss\\Level\\Routes\\");

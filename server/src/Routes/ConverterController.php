@@ -20,7 +20,7 @@ use Elephox\Templar\MainAxisAlignment;
 use Elephox\Templar\Templar;
 use Elephox\Web\Routing\Attribute\Controller;
 use Elephox\Web\Routing\Attribute\Http\Get;
-use RicardoBoss\Level\Views\InlineTemplarRenderer;
+use RicardoBoss\Level\Widgets\InlineTemplarRenderer;
 use RicardoBoss\Level\Widgets\LevelInput;
 
 #[Controller]

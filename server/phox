@@ -8,6 +8,7 @@ use Elephox\DI\Contract\ServiceCollection;
 use Elephox\Support\Contract\ExceptionHandler;
 use Elephox\Web\Routing\Contract\Router;
 use Elephox\Web\Routing\RequestRouter;
+use RicardoBoss\Level\WebSocket\WebsocketAppProvider;
 
 require_once 'vendor/autoload.php';
 const APP_ROOT = __DIR__;
@@ -28,6 +29,8 @@ $builder->services->addSingleton(
 		return (new RequestRouter($services))->loadFromNamespace('RicardoBoss\\Level\\Routes');
 	}
 );
+
+$builder->services->addSingleton(WebsocketAppProvider::class);
 
 $builder->commands->loadFromNamespace("Elephox\\Web\\Commands");
 $builder->commands->loadFromNamespace("RicardoBoss\\Level\\Commands");

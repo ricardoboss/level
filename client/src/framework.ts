@@ -120,3 +120,5 @@ function onWatchHandler(event: Event): void {
 
   onAction(ActionType.Change, {changeId, value: element.value})
 }
+
+(window as any).createApp = createApp;

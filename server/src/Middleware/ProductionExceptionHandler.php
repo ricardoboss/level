@@ -8,8 +8,8 @@ use Elephox\Templar\Foundation\Center;
 use Elephox\Templar\Foundation\Text;
 use Elephox\Templar\Templar;
 use Elephox\Web\Middleware\DefaultExceptionHandler;
-use RicardoBoss\Level\Views\App;
-use RicardoBoss\Level\Views\InlineTemplarRenderer;
+use RicardoBoss\Level\Widgets\App;
+use RicardoBoss\Level\Widgets\InlineTemplarRenderer;
 
 class ProductionExceptionHandler extends DefaultExceptionHandler {
 	public function __construct(

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RicardoBoss\Level\Views;
+namespace RicardoBoss\Level\Widgets;
 
 use Elephox\Templar\Templar;
 use Elephox\Templar\Widget;
