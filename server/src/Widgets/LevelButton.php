@@ -23,6 +23,7 @@ class LevelButton extends Button {
 		?BorderRadius $borderRadius = null,
 		ColorRank $rank = ColorRank::Primary,
 		ButtonType $type = ButtonType::Button,
+		bool $disabled = false,
 	) {
 		parent::__construct(
 			$child,
@@ -32,6 +33,7 @@ class LevelButton extends Button {
 			$borderRadius,
 			$rank,
 			$type,
+			$disabled,
 		);
 	}
 

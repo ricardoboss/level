@@ -712,12 +712,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/elephox-dev/templar.git",
-                "reference": "d8e5a52969264a54377f42f97e1d073fd57d8c5c"
+                "reference": "7d47fd4cad8aa1c23b50b26b70fbcba4a316914c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/d8e5a52969264a54377f42f97e1d073fd57d8c5c",
-                "reference": "d8e5a52969264a54377f42f97e1d073fd57d8c5c",
+                "url": "https://api.github.com/repos/elephox-dev/templar/zipball/7d47fd4cad8aa1c23b50b26b70fbcba4a316914c",
+                "reference": "7d47fd4cad8aa1c23b50b26b70fbcba4a316914c",
                 "shasum": ""
             },
             "require-dev": {
@@ -748,7 +748,7 @@
                 "issues": "https://github.com/elephox-dev/templar/issues",
                 "source": "https://github.com/elephox-dev/templar/tree/main"
             },
-            "time": "2022-08-09T16:12:34+00:00"
+            "time": "2022-08-09T23:52:04+00:00"
         },
         {
             "name": "elephox/web",

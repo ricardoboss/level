@@ -5,6 +5,7 @@ namespace RicardoBoss\Level\WebSocket;
 
 use Bloatless\WebSocket\Application\ApplicationInterface;
 use Bloatless\WebSocket\Connection;
+use Elephox\Templar\Widget;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -17,7 +18,9 @@ abstract class StateApplication implements ApplicationInterface, LoggerAwareInte
 	/**
 	 * @return TState
 	 */
-	abstract protected function initializeState(): StateInterface;
+	abstract public function initializeState(): StateInterface;
+
+	abstract public function render(StateInterface $state): Widget;
 
 	public static function getInstance(): ApplicationInterface {
 		return new static();
